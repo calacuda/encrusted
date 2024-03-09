@@ -136,14 +136,14 @@ impl UI for CodeUI {
                         _ => "object",
                     };
 
-                    format!("{}\n{}", class, obj)
+                    format!("{}\n{}\n", class, obj)
                 }
                 Token::Debug(text) => text,
             }
         }).collect();
         
         self.buffer.clear();
-        buf.join("\n")
+        buf.join("")
     }
 
 
