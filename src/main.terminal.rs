@@ -76,7 +76,7 @@ fn main() {
         process::exit(1);
     }
 
-    let ui = TerminalUI::new();
+    // let ui = TerminalUI::new();
 
     let mut opts = Options::default();
     opts.save_dir = path.parent().unwrap().to_string_lossy().into_owned();
@@ -85,7 +85,7 @@ fn main() {
     let rand32 = || rand::random();
     opts.rand_seed = [rand32(), rand32(), rand32(), rand32()];
 
-    let mut zvm = Zmachine::new(data, ui, opts);
+    let mut zvm = Zmachine::new(data, opts);
 
     zvm.run();
 }

@@ -26,6 +26,7 @@ use instruction::OperandType;
 use options::Options;
 use quetzal::QuetzalSave;
 use traits::UI;
+use ui_code::CodeUI;
 
 #[derive(Debug)]
 enum ZStringState {
@@ -124,7 +125,7 @@ impl ObjectProperty {
 }
 
 pub struct Zmachine {
-    pub ui: Box<dyn UI>,
+    pub ui: CodeUI,
     pub options: Options,
     pub instr_log: String,
     version: u8,
@@ -155,7 +156,7 @@ pub struct Zmachine {
 }
 
 impl Zmachine {
-    pub fn new(data: Vec<u8>, ui: Box<dyn UI>, options: Options) -> Zmachine {
+    pub fn new(data: Vec<u8>, options: Options) -> Zmachine {
         let memory = Buffer::new(data);
 
         let version = memory.read_byte(0x00);
@@ -168,6 +169,8 @@ impl Zmachine {
         } else {
             Zmachine::default_alphabet()
         };
+
+        let ui = CodeUI::default();
 
         let mut zvm = Zmachine {
             version,

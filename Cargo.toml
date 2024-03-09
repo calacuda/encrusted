@@ -7,9 +7,9 @@ repository = "https://github.com/calacdua/encrusted"
 readme = "README.md"
 license = "MIT"
 
-[[bin]]
-name = "encrusted"
-path = "src/main.terminal.rs"
+# [[bin]]
+# name = "encrusted"
+# path = "src/main.terminal.rs"
 
 [lib]
 # crate-type = ["cdylib"]

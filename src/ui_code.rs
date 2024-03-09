@@ -11,7 +11,7 @@ enum Token {
     Debug(String),
 }
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CodeUI {
     buffer: Vec<Token>,
 }

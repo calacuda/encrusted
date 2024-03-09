@@ -30,13 +30,11 @@ mod instruction;
 mod options;
 mod quetzal;
 mod traits;
-// mod ui_terminal;
 mod ui_code;
 pub mod zmachine;
 
 use options::Options;
 use traits::UI;
-// use ui_terminal::TerminalUI;
 use ui_code::CodeUI;
 use zmachine::Zmachine;
 
@@ -80,7 +78,7 @@ pub fn build_game(path: &Path) -> Result<Zmachine> {
         process::exit(1);
     }
 
-    let ui = CodeUI::new();
+    // let ui = CodeUI::new();
 
     let mut opts = Options::default();
     opts.save_dir = path.parent().unwrap().to_string_lossy().into_owned();
@@ -89,7 +87,7 @@ pub fn build_game(path: &Path) -> Result<Zmachine> {
     let rand32 = || rand::random();
     opts.rand_seed = [rand32(), rand32(), rand32(), rand32()];
 
-    let zvm = Zmachine::new(data, ui, opts);
+    let zvm = Zmachine::new(data, opts);
 
     Ok(zvm)
 }
