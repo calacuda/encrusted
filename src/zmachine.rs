@@ -976,6 +976,20 @@ impl Zmachine {
         (left, right)
     }
 
+    /// returns the players score and the number of turns
+    pub fn get_score(&self) -> (i16, u16) {
+        let score = self.read_global(1) as i16;
+        let turns = self.read_global(2);
+
+        (score, turns)
+    }
+
+    /// returns the name of the current location
+    pub fn get_location(&self) -> String {
+        let num = self.read_global(0);
+        self.get_object_name(num)
+    }
+
     pub fn update_status_bar(&self) {
         // status bar only used in v1-3
         if self.version > 3 {
