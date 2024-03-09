@@ -118,25 +118,26 @@ impl UI for CodeUI {
     fn get_text(&mut self) -> String {
 
         let buf: Vec<String> = self.buffer.clone().into_iter().enumerate().map(|(index, item)| {
-            let prev = if index == 0 {
-                None
-            } else {
-                self.buffer.get(index - 1)
-            };
-
-            let next = self.buffer.get(index + 1);
+            // let prev = if index == 0 {
+            //     None
+            // } else {
+            //     self.buffer.get(index - 1)
+            // };
+            //
+            // let next = self.buffer.get(index + 1);
 
             match item {
                 Token::Newline => "\n".to_string(), 
                 Token::Text(text) => text,
                 Token::Object(obj) => {
-                    let class = match (prev, next) {
-                        (None, Some(&Token::Newline)) => "room",
-                        (Some(&Token::Newline), Some(&Token::Newline)) => "room",
-                        _ => "object",
-                    };
+                    //  let class = match (prev, next) {
+                    //     (None, Some(&Token::Newline)) => "room",
+                    //     (Some(&Token::Newline), Some(&Token::Newline)) => "room",
+                    //     _ => "object",
+                    // };
 
-                    format!("{}\n{}\n", class, obj)
+                    // format!("{}", obj)
+                    obj
                 }
                 Token::Debug(text) => text,
             }
