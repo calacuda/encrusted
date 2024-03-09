@@ -32,7 +32,7 @@ mod quetzal;
 mod traits;
 // mod ui_terminal;
 mod ui_code;
-mod zmachine;
+pub mod zmachine;
 
 use options::Options;
 use traits::UI;
