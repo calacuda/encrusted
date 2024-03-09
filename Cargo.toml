@@ -1,20 +1,20 @@
 [package]
-authors = ["Sterling DeMille <sterlingdemille+github@gmail.com>"]
+authors = ["Eoghan West"]
 name = "encrusted"
 version = "1.1.0"
 description = "A z-machine (interpreter) for Infocom-era text adventure games"
-repository = "https://github.com/demille/encrusted"
+repository = "https://github.com/calacdua/encrusted"
 readme = "README.md"
 license = "MIT"
 
 [[bin]]
 name = "encrusted"
-path = "src/rust/main.terminal.rs"
+path = "src/main.terminal.rs"
 
 [lib]
-crate-type = ["cdylib"]
-name = "web"
-path = "src/rust/main.web.rs"
+# crate-type = ["cdylib"]
+# name = "web"
+path = "src/lib.rs"
 
 [profile.release]
 lto = true
@@ -28,12 +28,13 @@ serde = "1.0.88"
 serde_derive = "1.0.88"
 serde_json = "1.0.38"
 
-[target."cfg(target_arch = \"wasm32\")".dependencies]
-wasm-glue = "0.1.0"
+# [target."cfg(target_arch = \"wasm32\")".dependencies]
+# wasm-glue = "0.1.0"
 
-[target."cfg(not(target_arch = \"wasm32\"))".dependencies]
+# [target."cfg(not(target_arch = \"wasm32\"))".dependencies]
 atty = "0.2.11"
 clap = "2.32.0"
 lazy_static = "1.2.0"
 regex = "1.5.5"
 term_size = "0.3.1"
+anyhow = "1.0.80"

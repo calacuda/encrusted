@@ -15,4 +15,9 @@ pub trait UI {
     // only used by web ui
     fn flush(&mut self);
     fn message(&self, mtype: &str, msg: &str);
+
+    // only used by code ui
+    fn get_text(&mut self) -> String {
+        String::new()
+    }
 }

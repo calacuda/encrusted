@@ -124,7 +124,7 @@ impl ObjectProperty {
 }
 
 pub struct Zmachine {
-    pub ui: Box<UI>,
+    pub ui: Box<dyn UI>,
     pub options: Options,
     pub instr_log: String,
     version: u8,
@@ -155,7 +155,7 @@ pub struct Zmachine {
 }
 
 impl Zmachine {
-    pub fn new(data: Vec<u8>, ui: Box<UI>, options: Options) -> Zmachine {
+    pub fn new(data: Vec<u8>, ui: Box<dyn UI>, options: Options) -> Zmachine {
         let memory = Buffer::new(data);
 
         let version = memory.read_byte(0x00);
@@ -1567,6 +1567,21 @@ impl Zmachine {
         let args = self.get_arguments(instr.operands.as_slice());
         self.do_sread_second(args[0], args[1], input);
         self.pc = instr.next;
+    }
+
+    /// Code UI only main entry point.
+    pub fn exec_input(&mut self, input: &str) -> String {
+        self.handle_input(input.to_string());
+        self.step();
+
+        self.ui.get_text()
+    }
+
+    /// Code UI only main entry point.
+    pub fn start_game() -> String {
+        self.step();
+
+        self.ui.get_text()
     }
 
     // Web UI only
