@@ -1578,7 +1578,7 @@ impl Zmachine {
     }
 
     /// Code UI only main entry point.
-    pub fn start_game() -> String {
+    pub fn start_game(&mut self) -> String {
         self.step();
 
         self.ui.get_text()
